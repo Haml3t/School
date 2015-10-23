@@ -2,32 +2,46 @@
 
 #include "Complex.h"
 
-  Complex::Complex(double a, double b) {
-    setA(a);
-    setB(b);
-  }
+Complex::Complex(double a, double b) {
+  setA(a);
+  setB(b);
+}
 
-  void Complex::setA(double a) {
-    this->a = a;
-  }
+Complex::Complex(const Complex &other) {
+  setA(other.a);
+  setB(other.b);
+}
 
-  void Complex::setB(double b) {
-    this->b = b;
-  }
+void Complex::setA(double a) {
+  this->a = a;
+}
 
-  double Complex::getA() {
-    return a;
-  }
+void Complex::setB(double b) {
+  this->b = b;
+}
 
-  double Complex::getB() {
-    return b;
-  }
+double Complex::getA() {
+  return a;
+}
 
-  Complex Complex::operator+(Complex c) {
-    return Complex(a + c.a,
-			  b + c.b);
-  }
-  Complex Complex::operator-(Complex c) {
-    return Complex(a - c.a,
-			  b - c.b);
-  }
+double Complex::getB() {
+  return b;
+}
+
+Complex& Complex::operator=(const Complex &other){
+  setA(other.a);
+  setB(other.b);
+}
+
+Complex Complex::operator+(Complex c) {
+  return Complex(
+		 a + c.a,
+		 b + c.b
+		 );
+}
+Complex Complex::operator-(Complex c) {
+  return Complex(
+		 a - c.a,
+		 b - c.b
+		 );
+}
