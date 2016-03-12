@@ -1,0 +1,3 @@
+A. Create a class stack with the fixed size using an array. You need to have four functions: push, peek, pop and size.
+
+B. Try to create the class Binary tree using C++. Put the methods insert and find. For now you just need to insert and find key but in future you need to insert a key and value and find key or value

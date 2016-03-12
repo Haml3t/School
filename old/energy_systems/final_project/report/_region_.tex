@@ -1,0 +1,34 @@
+\message{ !name(final_project.tex)}\documentclass[12pt,letterpaper,notitlepage]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage{cancel}
+\usepackage{graphicx}
+%\usepackage{chemfig}
+%\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{booktabs, multicol, multirow}
+\usepackage{hyperref}
+\usepackage{fixltx2e}
+\usepackage{epstopdf}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{textcomp}
+%\usepackage{units}
+%\DeclareGraphicsExtensions{.png}
+%\newcommand*{\plimsoll}{{\ensuremath{-\kern-4pt{\ominus}\kern-4pt-}}}
+\begin{document}
+
+\message{ !name(final_project.tex) !offset(82) }
+\subsection{Solar Calculation}
+We opted to draw the additional heat necessary to operate our plant from an array of photovoltaic cells instead of taking it from heat generated in our cycle. This allows us to take advantage of available solar energy and increase our overall plant efficiency. We decided to locate our plant in Southwest America due to the high solar radiation values there, as well as the opportunity to contribute to American industry and energy independence. We chose Nevada specifically to take advantage of generous energy subsidies and available space in the desert. This area has an annual photovoltaic solar radiation value of 7.5. The corresponding r value (yield percentage) is based on this and the panel manufacturer. We used a triple junction solar-cell radiation solar panel from Soltec \& Fraunhofer, yielding an r of 46\% yield assuming 12 hours of active time per day. To get our desired value of $375\times 10^6\nicefrac{Btu/hr}$ we need about \fbox{126 acres} of solar panels, calculated as follows from a formula found online:
+\begin{equation}
+  A=\frac{E H PR}{r}
+\end{equation}
+where $A$ is the required area, required $Q_\mathrm{in} = E = 1318819.56\mathrm{kWh}$, yield percentage $r=0.46$, solar radiation value $H=7.5$ and default performance ratio $PR=0.75$.
+\message{ !name(final_project.tex) !offset(87) }
+
+\end{document}

@@ -1,0 +1,502 @@
+\documentclass[12pt,letterpaper,notitlepage]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage{cancel}
+\usepackage{graphicx}
+%\usepackage{chemfig}
+%\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{booktabs, multicol, multirow}
+\usepackage{hyperref}
+\usepackage{fixltx2e}
+\usepackage{epstopdf}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{mcode}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\usepackage{units}
+
+%\DeclareGraphicsExtensions{.png}
+%\newcommand*{\plimsoll}{{\ensuremath{-\kern-4pt{\ominus}\kern-4pt-}}}
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE The City University of New York}\\[1cm] % Name of your university/college
+\textsc{\Large The City College of New York}\\[0.5cm] % Major heading such as course name
+\textsc{\large Department of Mechanical Engineering}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries S.A.M.M. Semester 1 Final Report}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+Wensky \textsc{Azard}\\
+Michael \textsc{Gallant}\\
+Timothy H. \textsc{Johnson}\\
+David \textsc{Sugarman} (Team Leader)\\
+Francisco \textsc{Santos}
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Peyman \textsc{Honarmandi} % Supervisor's Name
+\emph{Sponsor:} \\
+Benjamin \textsc{Liaw}
+\end{flushright}
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large May 18, 2015}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width=0.4\linewidth]{CCNYCrest}\\[1cm] % Include a department/university logo - this will require the graphicx package
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+\tableofcontents
+\begin{abstract}
+  Study and research of the vacuum resin infusion was done to understand and design a machine, which would streamline the manufacturing process of fiberglass panels for TARDEC research. The research has been conducted to studyconduct Structural Health Monitoring in tank armor after impact. A sample experiment of a vacuum infusion process(VIP) was done in the cellar composites lab of Steinman Hall  in order to have a further understanding of the infusion process. Documentation was drawn out of the process as well as imagery of the process as it proceeded. Clients provided their opinion on what was important for the product to be able to achieve. Out of this feedback, the House of Quality was started, and kept on developing with relevant information such as the functions of the stem, the challenger and how competitors solve said problems, and the most important features of the product according to the clients. This house of quality served as the basis of the functional decomposition of the product, which details in a flowchart how each action should happen in order to complete the vacuum infusion operation. Knowing what the most important goals for the product to achieve are from the house of quality, preliminary design concepts were done by the team members and were compared in the first decision matrix. A total of eight preliminary concepts were developed, each focusing on one defining subsystem. Those were the first full systems that were thought of in the concept development process. They were based on subsystems, and because of this complete systems needed to be modeled. By comparing them in a new decision matrix as complete systems and taking into consideration the best results found in the first decision matrix as guidance the complete concept was decided. Mathematical models of the study were done as well as an analysis program in MATLAB. After the concept was decided for the product, several experiments on the sensor placement as well as the sealing method of the decided concept were done. The experiments proved promising, and thus the design phase of the product continued on. The concept the team decided to pursue was modeled with the idea that the material to be used that can be purchased from a reputable vendor. Because of this, cost analysis was simple to put together for the product. Every step of the semester was done tied into a deadline imposed by the team members, which is detailed in the Gantt chart. Next, the product needs to be further experimented upon with the materials used in the model. Manufacturing of the product will start September 2015.
+\end{abstract}
+\section{Introduction}
+\subsection{Project Description}
+The product in question is designed to streamline the process of manufacture of fiberglass test plate for research on advanced armor technology. For the overall process, the goal is to facilitate the sensor placement in the fiberglass panels, as well as facilitate the production of panels of 12 in$^2$, 24 in$^2$ and 36 in$^2$.\\
+
+It is very important for the final result of the product to have very smooth surfaces to ensure the impact data collected in the panels is accurate; therefore the product will include a mold which will serve as the production point of the panels. The mold will be a smooth, transparent rectangular plate, in order to work with the lightbox sensor placement system (described later in the report) to improve the sensor location.\\
+
+The panels will be done by vacuum infusion of resin, and thus a sealing subsystem is necessary for the project. The sealing technique that was decided upon for this particular project is named ``heat sealing''. A Nichrome wire in the desired outer area of seal will be installed and then heated up by applying voltage to it. The plastic seal bag would melt a little and fuse with the mold, creating a seal for the vacuum to start and thus the resin infusion.\\
+\subsection{Motivation}
+Research into structural health monitoring (SHM) technology being conducted at CCNY for the US Army Tank Automotive Research \& Development Center (TARDEC) requires proprietary sensor-embedded composite armor plate specimina for wave propagation testing experiments. Unfortunately, the actual process by which these specimina are currently produced is an elaborate, time-consuming affair which generates a significant amount of material waste and can only be conducted by an experienced technician. Furthermore, the actual results are often less than ideal, due to the difficulty of correctly positioning the embedded PZT sensors and then of maintaining their alignment over the course of the rest of the manufacturing process.\\
+
+In-house attempts had been made to streamline the manufacturing process, but ultimately failed due to being pursued haphazardly and without sufficient time or material resources. It was for this reason that Head Research Professor Liaw saw fit to assign the task of developing a smooth, simple, streamlined manufacturing device and process to our senior design team. After some discussion and brainstorming, SAMM was born.\\
+
+\subsection{Background}
+\subsubsection{Vacuum Infusion Process (VIP)}
+The panel construction method is vacuum infusion. This process uses a negative pressure to pull resin through a stack of fiberglass sheets. The objective is to evenly saturate the sheets and boil off any air that may be in solution with the resin in order to minimize irregularities in the resin matrix.\\
+
+The infusion assembly, pictured in Figure~\ref{fig:VIPSetup}, uses a mold to hold the panel shape for curing, the dry fibers, a peel ply to allow easy removal of the materials from the manufactured part, and a vacuum bag to create an airtight seal. Additionally there are ports to allow resin to flow in and air to flow out. Various channels and resin flow meshes can be used to control the pressure across the fibers for even infusion.\\
+
+Once everything is assembled and the seal is verified, the in-port is hooked up to the resin feed at atmospheric pressure and the out-port is hooked up to the pump.  In between the out-port and the pump there is a rigid catch-pot used to collect any excess resin pumped out the vacuum. The catch-pot also includes a pressure gauge for the monitoring of leaks. The pump is turned on, creating a pressure drop across the assembly and drawing resin through the fibers. When enough resin enters the assembly the in-port is clamped to prevent excess resin from being drawn. The panels are then cured. At room temperature this requires that the seal is maintained for 10-18 hours.\\
+
+\begin{figure}[hpbt]
+\centering
+\includegraphics[width=0.7\linewidth]{vacuumInfusionSetup}
+\label{fig:VIPSetup}
+\caption{The vacuum infusion process setup}
+\end{figure}
+
+\subsubsection{Structural Health Monitoring (SHM)}
+Structural health monitoring is a widely researched technology with various structural, aerospace, and military applications. The main idea of SHM is to integrate an arrangement of sensors into a composite structure or part in order to assess damage in real-time.\\
+
+Traditional health inspection techniques for composites are often non-destructive evaluation (NDE) methods since damage typically occurs between lamina (delamination).  Subsurface damage will grow over time due to regular loading and could possibly result in unanticipated failure. SHM aims to ease the assessment of composite structures by eliminating the need to routinely remove them from their assembly and perform inspections with specialized devices and labor. Successful implementation of SHM will allow one to determine the location, degree, and type of damage in a structure.\\
+
+\subsubsection{Lead Zirconate Titanate (PZT) Piezoelectric Sensors}
+Though there are numerous ways to implement SHM in composites structures, our project will solely focus on embedding PZT sensors. The network of sensors will be used in conjunction with wave propagation and signal analysis techniques to locate and determine the extent of damage. The PZT sensors used in the research are 6.4 mm in diameter. Embedding the PZT sensors in the composite panel consists of attaching them in precise locations with fast-drying epoxy onto individual sheets of glass fiber weave. This occurs for multiple layers of laminate depending on the desired configuration. Prior to infusion, the wiring for each sensor must be threaded through the fiber stack so that they can be easily accessed for testing.
+\begin{figure}[hpbt]
+\centering
+\includegraphics[width=0.7\linewidth]{PZTExample}
+\caption{A PZT sensor attached to a fiber weave, as in the current plate-making process}
+\label{fig:PZTExample}
+\end{figure}
+
+\subsection{Literature Review}
+The vacuum infusion process (VIP) is a well-developed composite fabrication process widely used in the nautical and automotive industry. There exists many companies dedicated to providing information and products specifically designed for VIP. Easy Composites is on such company. They sell all the components necessary to run a successful vacuum infusion: fiber cloth, vacuum equipment, molds, resin, vacuum bagging and related components, etc. The website also provides video tutorials and instructional guides. The entire suite, while geared towards professionals, is designed to accommodate beginners and hobbyists, as well. While this DIY-esque system suffices for our customers’ purposes, it cannot provide the ease-of-use and time-saving that a dedicated system would – much time and effort is put into setting up the single-use system each time a composite component is needed.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{smoothOn}
+\label{fig:smoothOn}
+\caption{Smooth-On EZ-Spray Silicone 20 and 22}
+\end{figure}
+There have been some attempts to streamline VIP.  Smooth-On is a company that specializes in versatile moldable liquid silicone products. Their target customers range from hobbyists to industry. Their most popular application for their products is silicone vacuum bagging for wet lay-up, infusion, pre-preg, and de-bulk composite fabrication. The EZ-Spray Silicone system, depicted in Figure~\ref{fig:smoothOn}, allows a user to fabricate silicone vacuum bagging based on the shape of the object being manufactured. The silicone bag is reusable, does not require release agents, is suitable for complex shapes, and has an integrated vacuum seal. The benefits of using this system over traditional nylon bagging film include reduced active labor, faster production times, and less waste. However, there is some initial labor required to fabricate the bag and it will not last forever, requiring the user to fabricate replacement bags on a regular basis depending on how well they are maintained.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{TorrTech}
+\label{fig:TorrTech}
+\caption{Torr Technologies, Inc: Double Diaphragm Tool}
+\end{figure}
+Torr Technologies is another contender in the realm of vacuum bagging. In addition to offering vacuum equipment, they also sell integrated vacuum bagging systems which they call Elastomeric Vacuum Tools. These systems are custom-built based on a customer’s needs. Most relevant to our case are their Double Diaphragm (or Clamshell) systems, pictured in Figure~\ref{fig:TorrTech}. In general, the apparatus consists of a clamshell-type frame with high-strength silicone diaphragms on each panel with built-in vacuum ports and valves. The diaphragms have a breather grid pattern molded into them to improve pressure distribution. These tools can be made to accommodate different sizes and molds. It is important, however, to note that these systems are not compatible with the VIP due to the fact that the resin contacts multiple non-disposable parts.
+
+\section{Problem Statement \& Objectives}
+\subsection{Problem Statement}
+Our goal is to design a precise, easy, rapid manufacturing process that will allow us to streamline the production of sensor-embedded armor plates for TARDEC research. This system will make use of the composite manufacturing technique known as the vacuum infusion process, discussed elsewhere in this report.
+\subsection{Objectives}
+\begin{itemize}
+\item Minimize active time
+\item Maximize precision
+\item Minimize material waste
+\end{itemize}
+\subsection{Specs \& Customer Requirements}
+Next, it is important for us to understand what is important for our clients when they use our product. To ensure satisfaction, a survey was sent to our clients in which, they rate the specs of the product into a rank of 1 to 5, 1 being low priority and 5 being high priority for their satisfaction. After compiling the results, the average of the results was computed to see what are the general features that would be better to implement to satisfy the larger demographic. Below, there is a sample table of what the survey looked like and the results of the survey.
+% Table generated by Excel2LaTeX from sheet 'Sheet3'
+\begin{table}[H]
+  \centering
+    \begin{tabular}{rL{5cm}rrr|r}
+    \toprule
+    \textbf{Category} & \textbf{Specification} & \textbf{Client 1} & \textbf{Client 2} & \textbf{Client 3} & \textbf{Average} \\
+    \midrule
+    General & Consumable parts must not be expensive & 1     & 2     & 2.67  & 2 \\
+          & Minimal tool use necessary throughout & 1     & 4     & 2.67  & 2.33 \\
+          & Comfortable to operate & 1     & 3     & 3.33  & 2.67 \\
+          & Produce panels rapidly & 3     & 2     & 2     & 2.5 \\
+          & Minimum active time & 5     & 3     & 4.67  & \textbf{4.5} \\
+          & Minimum passive time & 1     & 2     & 1.67  & 1.83 \\
+\hline
+    Bag Prep & Minimal use of materials & 1     & 3     & 2     & 2 \\
+          & Maximum reusability/recyclability of materials & 1     & 2     & 1.33  & 1.67 \\
+\hline
+    Sensor placement & Maximum precision & 5     & 5     & 4.33  & \textbf{4.67} \\
+          & Maximum ease of placement & 3     & 3     & 3.67  & 3.5 \\
+\hline
+    Panel setup & Maximum flexibility in accommodating different panel dimensions & 5     & 4     & 2.67  & 3.67 \\
+          & Fiber sheets must stay in place & 5     & 3     & 4.33  & \textbf{4.33} \\
+\hline
+    Sealing & Minimum chance of initial leaks & 3     & 2     & 4     & 3.5 \\
+          & Minimum chance of developing leaks while resin is still "jelly" & 5     & 5     & 4.67  & \textbf{4.67} \\
+          & Maximum reusability/recyclability of materials & 1     & 2     & 2.33  & 2 \\
+\hline
+    Infusion & Minimum materials & 1     & 2     & 2     & 1.67 \\
+          & Minimum fumes & 5     & 4     & 2     & 3 \\
+          & Minimum pre-infusion air bubbles in resin & 5     & 4     & 3     & 3.83 \\
+          & Tube from bag to trap must be detachable without compromising vacuum & 3     & 3     & 3     & 3 \\
+          & Tubes must be easy to connect/disconnect/seal & 3     & 2     & 3     & 2.5 \\
+\hline
+    Curing & Machine not tied up by curing & 5     & 2     & 2     & 2.67 \\
+          & Sheets/sensors cannot move & 5     & 5     & 4.33  & \textbf{4.67} \\
+          & Must be resistant/heat-safe & 3     & 3     & 2.33  & 2.5 \\
+\hline
+    Removal & Removing panels must be easy & 1     & 2     & 2.67  & 2.33 \\
+          & Cleanup for next process must be minimal & 3     & 3     & 4     & 3.17 \\
+\hline
+    Maintenance & Must be easy to maintain & 3     & 3     & 3.33  & 2.83 \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:customerSpecsWeights}%
+  \caption{Customer requirements, specifications and weights}
+\end{table}%
+Results show that there are many specs that are especially important for our clients. We identified these as the specifications that scored four or more points on average. Among those, minimum active time, sensor and sheet movement lockdown, reducing chances of leaks and maximum sensor precision were the most important.
+
+Doing this survey gave the team a better understanding of what path to follow for the design and subsequent manufacturing of the product. These results were compiled with other data such as competition data and relation of functions in the house of quality. This was an important first step to also be able to see where the project is going, and thus create a functional decomposition that would make the product achieve the goals set to us by our clients.
+\subsection{Steps Taken}
+In order to get familiarized with the project, the first step was to meet with the graduate students that will be using the machine we are to do and ask them for specifically what they want to achieve with their research. After the research was explained, a sample run of how the vacuum infusion happens in the current state of the research was done with water instead of resin, and bolts instead of sensors were embedded into the sheets of fiberglass. For this sample, only a folder fiberglass sheet was used, however in reality, up to 24 individual fiberglass sheets will be used for each of the panels.\\
+
+After the process was explained, the technical specifications necessary for the product were asked to the graduate students, which are the clients for this particular product. This process was called customer requirements weights. It was asked for the clients to rate each of the specifications that would be in the product with a value of 1 to 5,  1 being not important at all and 5 being extremely important. With this information, we were able to do a house of quality, which the group used to have an idea of what was required from the project. Because of this, the group could start concept generation. Approximately 15 concepts were done, from which the best eight were pit against each other in the decision matrix. The decision matrix, shown in Figure~\ref{fig:decisionMatrix} gave the team a good idea of how feasible each of the subsystems were in reality, taking into consideration the manufacturability, cost of materials among other parameters. The decision matrix was very useful to set a direction in which the group wanted the project to go, and with this, four complete concepts emerged.\\
+% Table generated by Excel2LaTeX from sheet 'Decision Matrix'
+\begin{table}[htbp]
+  \centering
+    \begin{tabular}{C{3cm}C{1.5cm}C{3cm}C{3cm}C{3cm}C{3cm}}
+    \toprule
+          & \textbf{Weighted } & Concept I  & Concept II & Concept III & Concept IV \\
+    \midrule
+    \textbf{} & \textbf{(\%)} & \textbf{Outer-Seal Silicone Bag} & \textbf{Silicone Diaphragm Stack} & \textbf{Open Top, Grooved Base Plate} & \textbf{Heat Sealer} \\
+\hline
+    \textbf{Cost} & 17.5  & 0     & 0     & 1     & 0 \\
+    \textbf{Manufacturability} & 15    & 1     & 1     & 1     & 0 \\
+    \textbf{Complexity} & 5     & 0     & 0     & 1     & -1 \\
+    \textbf{Maintenance} & 5     & -1    & -1    & 0     & 1 \\
+    \textbf{"Wow" Factor} & 10    & 0     & 0     & -1    & 1 \\
+    \textbf{Compatibility with Current Materials} & 15    & 0     & 0     & 1     & 1 \\
+    \textbf{Versatility} & 5     & 1     & 1     & 1     & 1 \\
+    \textbf{Efficiency (Time)} & 17.5  & 1     & 1     & 0     & 1 \\
+    \textbf{Ease of Use} & 10    & 1     & 0     & 0     & 1 \\
+    \textbf{} &       &       &       &       &  \\
+\hline
+    \textbf{Total} & 100   & 42.5  & 32.5  & 47.5  & \textbf{57.5} \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:decisionMatrix}%
+  \caption{Decision matrix}
+\end{table}%
+
+With the four final concept designs, each was done in solid works and compared with each other in the decision matrix included in Figure~\ref{fig:decisionMatrix}. Areas of interest for the concepts were the manufacturability, sealing method, feasibility, sensor placement method and cost. With the group analysis it was decided that the direction the project was going to go is heat-sealing for the sealing method, light box for the sensor placement method, metal for the material of the mold and vacuum resin infusion.
+\subsection{Time Table (Gantt Chart)}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1.1\textwidth]{gantt}
+\label{fig:gantt}
+\caption{Gantt Chart}
+\end{figure}
+To keep up with the progress of the group as the semester went along, a Gantt chart was created. Gantt charts are a very efficient way of keeping track of how well the weekly goals of the group are being met.  The Gantt chart is a simple concept. A certain time slot separated each of the works needed to be done by the group. As time over the semester progressed, some milestones in the Gantt chart were to start, and certain others were to be in a certain percentage of completion or completed. This gave us the opportunity how in reality the group was meeting the goals of the semester in a weekly basis as well as serving as a reminder of what projects and things to do were coming up as the semester advanced.\\
+
+For the most part, each of the tasks in the Gantt chart were assigned to certain people in the group by the group leader after given the opportunity of volunteer to do said tasks. Help would be provided to tasks that were behind schedule and needed completion. It was important to keep all of our tasks done in a timely matter, as many of said tasks were dependent on another. For instance, there cannot be any simulation of the process of vacuum infusion if there is no meeting with the graduate students.  An early Gantt chart copy is included in the Google Drive folder ``Gantt Chart''.\\
+
+\section{Design Concepts}
+\subsection{Functional Decomposition}
+Two infusion processes were observed with the assistance of Deonauth. From the existing process we were able to generate a functional decomposition of the work, shown in Figure~\ref{fig:functionalDecomposition}. This process was helpful for further specification of the problem and also helped to identify subsystems necessary for the final design. Here the arrows indicate flows while the boxes indicate processes.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{functionalDecomposition}
+\caption{Functional decomposition of the vacuum infusion process}
+\label{fig:functionalDecomposition}
+\end{figure}
+\subsection{Concept Development}
+Concept development plays an important role in any project. Work done in this phase is of particular value because there is less cost to changing an attributes of the project earlier in the project (Ullman p. 5-7). Concept generation is way to generate that will ultimately be employed but also to immerse the entire team in the problem at hand; Even the concepts that are passed over provide valuable insights or specify new design constraints.\\
+
+Our concept development was informed by three important works that were started at the onset of the project: the QFD, literature review and functional decomposition of the existing production process. Additionally we were inspired by many unrelated products. Concepts were explored freely by group and individual brainstorming sessions and the idea we will pursue was chosen by iterative use of the decision matrix.
+\subsection{Subsystem Identification}
+We learned early on that some of our final product's subsystems behave in a mostly independent fashion. This means that many subsystem concepts do not directly conflict but some may work better in conjunction with others. From the functional decomposition we took the liberty of defining subsystems that we feel were not directly related. These include:
+\begin{description}
+\item[Sealing] the mechanism used to maintain the vacuum such as bag and tape concepts
+\item[Enclosure] the framework and user interface of the product
+\item[Plumbing] the management of the pump, ports, tubing and valves
+\item[Leak Sensing] feedback mechanism for the quality of the seal
+\item[Sensor placement] the mechanism used to guide the placement of the sensors
+\item[Temperature Control] any necessary of heating or cooling apparatus
+\end{description}
+\subsection{Composite Concepts}
+With few exceptions the specification of most of these systems does not provide significant impact on the others but for the purpose of evaluation, using the decision matrix, concepts for the subsystem were synthesized into complete systems.\\
+
+The following complete systems were evaluated for the second iteration of the decision matrix. Each is set apart by major design features. For brevity the input designs from the first decision matrix are not included here. It is however important to note that at earlier points in the process, a much greater diversity of sensor placement concepts were being discussed including using pre-preg sheets with sensors pre-applied, using a computer controlled sensor placement system, a loom-like system that holds the sheets firmly in place and a lightbox.\\
+
+\subsubsection{Sensor Placement: The Lightbox}
+The lightbox system, represented in Figures~\ref{fig:lightboxExample1} and~\ref{fig:lightboxSketch}, projects a powerful lamp to back-light the layers of fiber. Because the materials used are fairly transparent a pattern could be projected through the layers and sensors could be placed precisely above each other. This was chosen as our sensor placement mechanism because it is simple, relatively inexpensive and provides constant feedback as to whether sensors that are lower in the stack have shifted.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\linewidth]{lightboxExample1}
+\caption{A lightbox in action}
+\label{fig:lightboxExample1}
+\end{figure}
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.7\linewidth]{lightboxSketch}
+\caption{The lightbox as used for sensor placement}
+\label{fig:lightboxSketch}
+\end{figure}
+\subsection{Our Designs}
+\subsubsection{Design 1: Outer-Seal Silicon Bag}
+This concept, Figure~\ref{fig:design1}, utilizes silicone bagging material, as opposed to the STRETCHLON that is currently being used. Silicone bags generate a more stable seal and can be reused for many infusions. The upper part of the clamshell retains the bagging material and ports when in the up position. To apply an even pressure for sealing there is a groove around the outside of the lower assembly. Rope or elastic material is used to firmly wedge the bagging material into the groove.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{design1}
+\caption{Design 1: Outer-Seal Silicon Bag}
+\label{fig:design1}
+\end{figure}
+\subsubsection{Design 2: Silicone Diaphragm Stack}
+The following design (shown in Figure~\ref{fig:design2}) also uses the silicone bagging material. This is a modular design that would be affordable enough that several frames could be produced. This way large components needed for infusion, such as the pump, catch-pot, and lightbox, could be remain in one place for infusion but the frames can be removed to allow the curing of multiple panels simultaneously.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{design2}
+\caption{Design 2: Silicone Diaphragm Stack}
+\label{fig:design2}
+\end{figure}
+\subsubsection{Design 3: Open-Top Grooved Baseplate}
+The purpose of this design, shown in Figure~\ref{fig:design3}, was to eliminate the vacuum tape that is currently used. This would use a tongue-and-groove mechanism to press the STRETCHLON into a permanent reusable silicone seal. With further work this should be able to generate the required seal.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{design3}
+\caption{Design 3: Open-Top Grooved Baseplate}
+\label{fig:design3}
+\end{figure}
+\subsubsection{Design 4: Heat Sealer (Chosen Design)}
+This concept, as seen in Figure~\ref{fig:design4}, uses thermal
+impulse welding to weld the existing STRETCHLON material. The top
+frame contains a Nichrome ribbon—a type of resistance heater—which can
+quickly locally heat the bag for sealing.  A quality weld provides
+more repeatable and uniform seal than the the vacuum tape used
+now. This also has the unique feature among designs so far that the
+panels can be removed as packets for curing. This means there is no
+limitation on the number of panels that can be cured
+simultaneously.~\textbf{Ultimately, we chose this design for our final
+  design}, as detailed in Section~\ref{sec:decisionMatrix}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{design4}
+\caption{Design 4: Heat Sealer}
+\label{fig:design4}
+\end{figure}
+\section{Design Analysis}
+\subsection{Decision Matrix}
+\label{sec:decisionMatrix}
+For this iteration the four designs are input into the decision matrix, shown in Figure~\ref{fig:decisionMatrix}. The constraints and weights of each design are the output of the HOQ, such that an each design receives a score between -100\% and 100\%. The projected performance of each design is ranked by the team. The resolution of the rank is low—good, neutral or bad—because the information at this stage is imperfect.\\
+
+The decision matrix allows us to evaluate which design has the most promise of satisfying the most important customer requirements. Using this process we chose the heat sealer to concentrate our efforts on for detailing.\\
+
+\subsection{Solid Modeling}
+The CAD model, shown in Figure~\ref{fig:finalCAD} was then detailed to include manufacturable components with dimensions that reflect available stock from the suppliers. While this will continue to change thorough the detailing process, figure XX shows an image of the most current CAD model. The clients requested that the infusion rig have capacity for 36”x 36” panels. To provide clearance for ports and the heat sealing assembly the total size of the infusion rig must about 46”x46”. This provides some difficulty for detailing as it is both a large and an odd size. This further constrains the design because many materials we are considering are either prohibitively expensive or difficult to source.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{finalCAD}
+\caption{The final design}
+\label{fig:finalCAD}
+\end{figure}
+\subsection{Bill of Materials}
+Table~\ref{tab:billOfMaterials} is the most up-to-date bill of materials. This includes the stock materials for all of the components in the CAD model. It is missing the lighting system, welding system, control system, and the power source. The best estimate is that this will increase the cost by \$100 to \$200.  However much of this increase in cost could be offset by sourcing lower cost materials.
+% Table generated by Excel2LaTeX from sheet 'Sheet2'
+\begin{table}[H]
+  \centering
+    \begin{tabular}{R{1.5cm}R{3cm}rrrrrr}
+    \toprule
+    \textbf{Part \#} & \textbf{Description} & \textbf{Vendor} & \textbf{Part ID \#} & \textbf{Cost} & \textbf{Unit} & \textbf{Quantity} & \textbf{Total (\$)} \\
+    \midrule
+    1     & Zinc-galvanized plate & McMaster & 8943K41 & 140.30 & \$/unit & 1     & 140.30 \\
+    2     & 6'x2.5”x3/8” Al bar & McMaster & 8975K468 & 44.39 & \$/unit & 2     & 88.78 \\
+    3     & 6'x5”x3/8” Al bar & McMaster & 8975K211 & 88.84 & \$/unit & 2     & 177.68 \\
+    4     & 5'x1”x2” Al Channel & McMaster & 1630T29 & 19.36 & \$/unit & 4     & 77.44 \\
+    5     & 36”x36”x1/4” w acrylic & McMaster & 8505K96 & 113.88 & \$/unit & 1     & 113.88 \\
+    6     & 4'x1"x1/4" Al angle bar & McMaster & 8972K19 & 20.51 & \$/unit & 1     & 20.51 \\
+    7     & 4'x2"x.09" Piano Hinge & McMaster & 1569A913 & 18.45 & \$/unit & 1     & 18.45 \\
+    8     & 1"x12'x1/2" Ceramic Insulation Strips & McMaster & 9379K91 & 9.88  & \$/unit & 2     & 19.76 \\
+    9     &       &       &       &       &       &       & 0.00 \\
+    10    &       &       &       &       &       &       & 0.00 \\
+    11    &       &       &       &       &       &       & 0.00 \\
+    12    &       &       &       &       &       &       & 0.00 \\
+    13    &       &       &       &       &       &       &  \\
+\hline
+    \textbf{Total}      &       &       &       &       &       &       & \textbf{656.80} \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:billOfMaterials}%
+  \caption{Bill of Materials}
+\end{table}%
+
+\subsection{Proof of Concepts}
+There are two important subsystems that are not adequately specified by the CAD model alone, the lightbox sensor placement system and the thermal impulse welding system. Preliminary tests were devised to serve as a proof of concept.
+\subsubsection{Lightbox Proof of Concept}
+For the proof of concept for the lightbox we borrowed the typical 21 sheets of fiberglass from the lab and an overhead projector. With this we were able to experiment with the visibility of dummy sensors in different arrangements within the stack.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{lightboxDemo}
+\label{fig:lightboxDemo}
+\caption{Lightbox proof of concept}
+\end{figure}
+Figure~\ref{fig:lightboxDemo} shows dummy sensors (nickels) placed at different heights. The lower right is the extreme case of a sensor placed underneath all the fibers. The diffusion of the light is high for many sheets as well as for very small objects. This sensor placement method shows a lot of promise but further work should be done to specify a lighting system that minimizes this diffusion.
+\subsubsection{Heat Sealing Proof of Concept}
+The lab's supplier of STRETCHLON confirmed that the material could be heat welded but was not able to provide relevant technical information other than its melting point. Using a hot plate and a few assorted metal objects we were able to create some primitively welded packets for vacuum testing. This is shown in Figures~\ref{fig:heatSealerDemo1} and~\ref{fig:heatSealerDemo2}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{heatSealerDemo1}
+\label{fig:heatSealerDemo1}
+\caption{Heat sealer proof of concept experimental setup}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{heatSealerDemo2}
+\label{fig:heatSealerDemo2}
+\caption{Heat sealer proof of concept results}
+\end{figure}
+This process provided a lot of information about the important parameters, temperature, seam width, pressure and time. While it was difficult to get uniform temperature with the given arrangement we were able to produce some acceptable seals. This procedure allowed us to determine a design temperature of 200-300C. Also we determined that a seam width of 3-5cm would provide enough redundancy that small flaws in the weld would not result in critical leaks.
+\section{Results \& Discussion}
+\subsection{Numerical Heat Transfer Modeling}
+The heat transfer modeling of our system is also helpful for determining time and power requirements. Figure~\ref{fig:nichromeVacuumBagStack} shows the stack of the Nichrome ribbon and vacuum bagging film.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{nichromeVacuumBagStack}
+\label{fig:nichromeVacuumBagStack}
+\caption{Nichrome ribbon/vacuum bagging stack}
+\end{figure}
+The width of the total stack is much larger than its depth so it can be assumed to be one dimensional heat transfer with energy generation within the Nichrome ribbon. The following Equation~\ref{eqn:HTGoverning} is the governing heat transfer equation for our system:
+\begin{equation}
+\alpha  {\partial^2 T \over \partial^2 z} +{\bar{v} \over \rho     c_p } \left( {V \over L } \right)^2 = {\partial T \over \partial t}
+\label{eqn:HTGoverning}
+\end{equation}
+where
+\begin{center}
+\begin{itemize}
+        \item $\alpha$ : Thermal diffusivity of Nichrome, $(m^2/s)$
+        \item $c_P$ : Specific heat of Nichrome, $(J/kgK)$
+        \item $L$ : Length of Nichrome ribbon $m$
+        \item $\rho$ : Resistivity of Nichrome $\Omega$\\
+\end{itemize}
+\end{center}
+There is no closed form analytical solution but we were able to develop a MATLAB script for numerical approximation. Using this code, we were able to perform several simulations with insulated boundaries conditions as well as with specified temperatures at either side. Figure~\ref{fig:HTgraph} shows the results of a simulation with insulation along the upper boundary and specified temperature at the lower boundary.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{anythingifyoucansaveit}
+\label{fig:HTgraph}
+\caption{Heat transfer modeling results}
+\end{figure}
+For insulated boundary condition the temperature rose nearly linearly with time with only a small temperature drop across STRETCHLON film. Also the heat capacity of the Nichrome and film is small. So if we design to minimize heat loss at the boundaries the welding times should be reasonable with a low voltage drop across the Nichrome wire, 1-20s for 10-50V.
+\section{Future Work \& Conclusions}
+\subsection{Future Work}
+At this point, we have developed the majority of the requisite subsystems and design to a sufficient degree of detail to allow for procurement of parts and manufacturing of the device. However, a few items remain to be refined and finalized.
+
+\subsubsection{Heat Sealer Test Apparatus}
+The heat sealer subsystem requires the most work to bring the design to a state where it can actually be implemented and manufactured. Our next step here is to design and manufacture a more refined testing apparatus. Because the fine details of fully-automated (and I do mean fully-automated---close the lid, press a button, heat seal is created) control by Arduino have yet to be determined, this testing device will be set up so as to allow us to vary the temperature, pressure and sealing time and therefore determine the optimal values for each parameter. It will likely consist of a power supply, some Nichrome ribbon and a potentiometer. These values will then in turn be used to develop the heat sealer final design.
+
+\subsubsection{Heat Sealer Final Design}
+Once we have experimentally determined the optimal values for the key parameters involved in generating an effective, reliable heat seal, we have to implement this in such a way as to make it a one-button, automatic process for the manufacturing technician. Our plan is to use an open-source Arduino microcontroller connected to a power supply to regulate the current and voltage supplied to a 5mm-wide Nichrome ribbon. Using the heat transfer modeling described in EARLIER SECTION to determine how voltage/current applied to the wire causes it to heat up and the experimental results from the previously mentioned heat sealer testing setup, we will be able to program the Arduino to effect a very precisely-timed current pulse on the system. This will in turn cause the Nichrome ribbon to heat up to the specific desired temperature over the experimentally-determined optimal interval, creating a perfect impulse weld every time.\\
+
+\subsubsection{Lightbox}
+The lightbox sensor-placement system also needs some more work before it is ready for prime time. Specifically, we need to solve the diffraction/diffusion issue: due to diffraction caused by the fibers of the weave, light beams are unable to travel directly from the lightbulb to the eye of the viewer. For this reason, it becomes very hard to precisely make out the silhouette of a sensor once 10 or so fiber layers have been placed on top of it. This poses a potential problem for some sensor configurations, as a panel may involve up to 21 fiber layers with sensors embedded at various depth points throughout.
+We are investigating a few approaches to solve this issue by tweaking the light source.
+\begin{description}
+\item[More powerful/higher-wattage bulb] For our proof-of-concept, we used the overhead projector in a classroom in Steinman Hall. While ideal as far as demonstrating the potential viability of the lightbox concept was concerned, the bulb was fairly dim, which proved to be a problem when we tested a panel configuration with many fiber layers. As such, we plan to test again using a much more powerful light source, in the hopes that the extra candlepower will help mitigate the "fading" observed in the image.
+\item[Different light wavelengths] If the issue is indeed related to diffraction of the light waves due to fibers, using light of a shorter wavelength should result in less interference and therefore a sharper image.
+\item[Multiple lightbulbs] If it turns out that procuring a single high-power bulb is unfeasible for some reason (cost, power requirements, heat generation, etc), using multiple bulbs may allow us to achieve the same brightness. Furthermore, they will generate light in a different pattern, which may help by mitigating/eliminating ``shadows''.
+\end{description}
+
+\subsubsection{Assistive Mechanism for Enclosure Top}
+A key advantage of using a clamshell-style hinged enclosure is that it means that opening and closing the device---a key step in operation---can be accomplished with precision and ease using only one hand. This frees up the user's other hand for any number of tasks, and ensures that the Nichrome heating element aligns properly with the vacuum bag and baseplate. In order to make this system as smooth and effective as possible, we intend to add an assistive mechanism that both supports the enclosure top when in the open position as well as reduces the lifting force required from the user. A useful reference is the piston used in automobile trunks for the same purpose.\\
+
+In order to accomplish this, we will conduct static and dynamic mechanical analysis of the system so as to determine the desired design force for the assistive mechanism. Once that parameter has been specified, we will determine whether to use a piston or a spring system and then source the required parts.\\
+
+\subsection{Conclusions}
+This work will take place over the summer in order to make sure that we will be ready to order parts as soon as we receive our budget in the fall. We have accomplished the majority of the necessary design and detailing work already, and once these last few elements fall into place we will be ready to commence procurement and manufacturing.
+
+\section{References}
+\begin{thebibliography}{9}
+\bibitem{fiberglast}
+\emph{Fibre Glast Composites}.
+Vacuum Infusion, 2015.
+Web.
+18 May 2015.
+
+\bibitem{torr}
+\emph{Torr Technologies, Inc}.
+Reusable Vacuum Bagging Systems, Hardware, Hoses \& Pumps, 2015.
+Web.
+18 May 2015.
+
+\bibitem{bruno}
+Bruno Zamorano-Senderos
+``Passive Impact Damage Detection of Fiberglass Composite Panels.''
+(2013):
+Print.
+\end{thebibliography}
+\section{Appendix}
+\lstinputlisting{sammHTModel_thj_5_12_rev6.m}
+\end{document}
+
+%  LocalWords:  MatLab

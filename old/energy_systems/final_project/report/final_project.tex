@@ -1,0 +1,129 @@
+\documentclass[12pt,letterpaper,notitlepage]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage{cancel}
+\usepackage{graphicx}
+%\usepackage{chemfig}
+%\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{booktabs, multicol, multirow}
+\usepackage{hyperref}
+\usepackage{fixltx2e}
+\usepackage{epstopdf}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{textcomp}
+%\usepackage{units}
+%\DeclareGraphicsExtensions{.png}
+%\newcommand*{\plimsoll}{{\ensuremath{-\kern-4pt{\ominus}\kern-4pt-}}}
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE The City University of New York}\\[1.5cm] % Name of your university/college
+\textsc{\Large The City College of New York}\\[0.5cm] % Major heading such as course name
+\textsc{\large Department of Mechanical Engineering}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Final Project: Power Plant Design}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+Ye Win \textsc{Aye}\\
+Fabian \textsc{Lopez}\\
+Bryce \textsc{Marte}\\
+David \textsc{Sugarman} % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Adjunct Professor:} \\
+Edward \textsc{Ecock} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[4cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large September 9, 2015}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+\section{Introduction}
+\label{sec:introduction}
+The General Electric combustion gas turbine Model 9HA.02 is a remarkable feat of engineering, capable of achieving efficiencies of 60\% \textbf{REVISE/CHECK}. However, we are not satisfied with this level of performance, as impressive as it is. By incorporating cutting-edge refinements to the steam power cycle as well as alternative power generation techniques, we have sought to further increase plant efficiency. Our solution will be detailed in the following sections.
+\section{Plant Overview}
+\label{sec:plantOverview}
+\begin{description}
+  \item[Location:] Nevada desert\\
+  \item[Components:] 3x feedwater heaters\\
+  \item[Cycle type:] Combined gas turbine with solar\\
+  \item[Total cycle efficiency:] 72.5\%\\
+\end{description}
+Location of plant: Nevada desert.
+\section{Specification for Gas Turbine}
+\label{sec:turbineSpec}
+We used the General Electric combustion gas turbine Model 9HA.02 as specified by the problem statement.
+\section{Flow Diagram \& Heat Balance}
+\label{sec:flowDiagram}
+\subsection{Original Flow Diagram}
+\subsection{Final Flow Diagram}
+\section{Cycle Efficiency Calculations}
+\label{sec:cycleCalcs}
+\subsection{Original Calculations}
+Ye Win's first calculation packet
+\subsection{Final Calculations}
+We added a solar array and a feedwater heater. We had to choose the best possible isopressure. We did this by fixing the condesnser pressure at 0.25 and we want the moisture fraction to be 87\% in the condenser. By conducting the calculation in referse from the desired mass fraction with and relevant entropy value, we calculated the exhaust pressure $P_2$. We then worked backwards from there to calculate the optimum temperatures at all other stages of the power plant, making use of the Mollier chart to determine the corresponding pressures.
+(insert Ye Win's packet)
+(insert chart from Excel sheet)
+\subsection{Solar Calculation}
+We opted to draw the additional heat necessary to operate our plant from an array of photovoltaic cells instead of taking it from heat generated in our cycle. This allows us to take advantage of available solar energy and increase our overall plant efficiency. We decided to locate our plant in Southwest America due to the high solar radiation values there, as well as the opportunity to contribute to American industry and energy independence. We chose Nevada specifically to take advantage of generous energy subsidies and available space in the desert. This area has an annual photovoltaic solar radiation value of 7.5. The corresponding r value (yield percentage) is based on this and the panel manufacturer. We used a triple junction solar-cell radiation solar panel from Soltec \& Fraunhofer, yielding an r of 46\% yield assuming 12 hours of active time per day. To get our desired value of $375\times 10^6\nicefrac{Btu/hr}$ we need about \fbox{126 acres} of solar panels, calculated as follows from a formula found online:
+\begin{equation}
+  A=\frac{E H PR}{r}
+\end{equation}
+where $A$ is the required area, required $Q_\mathrm{in} = E = 1318819.56\mathrm{kWh}$, yield percentage $r=0.46$, solar radiation value $H=7.5$ and default performance ratio $PR=0.75$.
+\section{Steam Flow Requirement Calculations}
+\label{sec:steamCalcs}
+Pg. 3 of Ye Win's packet
+\section{T-S Diagram}
+\label{sec:TSDiagram}
+\section{Summary}
+\label{sec:summary}
+\end{document}

@@ -1,0 +1,98 @@
+\documentclass[12pt,letterpaper,notitlepage]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage{cancel}
+\usepackage{graphicx}
+%\usepackage{chemfig}
+%\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{booktabs, multicol, multirow}
+\usepackage{hyperref}
+\usepackage{fixltx2e}
+\usepackage{epstopdf}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{mcode}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\usepackage{units}
+
+%\DeclareGraphicsExtensions{.png}
+%\newcommand*{\plimsoll}{{\ensuremath{-\kern-4pt{\ominus}\kern-4pt-}}}
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE The City University of New York}\\[1cm] % Name of your university/college
+\textsc{\Large The City College of New York}\\[0.5cm] % Major heading such as course name
+\textsc{\large Department of Mechanical Engineering}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Analysis of Rocket Nose Cone Design}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+Michael \textsc{Gallant}\\
+Albaro \textsc{Pillco}\\
+David \textsc{Sugarman}\\
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Vahid \textsc{Azadeh-Ranjbar} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large December 21, 2015}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\includegraphics[width=0.4\linewidth]{CCNYCrest}\\[1cm] % Include a department/university logo - this will require the graphicx package
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+\tableofcontents
+
+\section{Appendix}
+%\lstinputlisting{.m}
+\end{document}
