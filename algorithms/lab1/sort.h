@@ -1,3 +1,5 @@
+#include <iostream>
+#include <ostream>
 #ifndef SORT_H_
 #define SORT_H_
 

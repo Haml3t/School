@@ -1,3 +1,4 @@
+// David Sugarman 5364
 #include <sstream>
 #include "sort.h"
 
@@ -15,8 +16,25 @@ list nodes should be created. It should also run in O(n log n) time as
 the regular merge sort algorithm.
  */
 LinkedListNode *sortLinkedList(LinkedListNode *list) {
-    // TODO
-    return NULL;
+  if (list->next == NULL)
+    return list;
+  else {
+    LinkedListNode *slow = list;
+    LinkedListNode *fast = list;
+    while(fast->next != NULL) {
+      fast = fast->next;
+      if (fast->next != NULL) {
+	fast = fast->next;
+	slow = slow->next;
+      }
+    }
+    LinkedListNode *midnode = slow->next;
+    slow->next = NULL;
+    LinkedListNode *a = sortLinkedList(list);
+    LinkedListNode *b = sortLinkedList(midnode);
+    LinkedListNode *merged_result = mergeSortedLinkedLists(a, b);
+    return merged_result;
+  }
 }
 
 /*
@@ -28,20 +46,58 @@ use O(1) additional storage. It should reuse the nodes from the lists provided
 as inputs.
  */
 LinkedListNode *mergeSortedLinkedLists(LinkedListNode *firstList, LinkedListNode *secondList) {
-    // TODO
-    return NULL;
+  if (firstList == NULL) {
+    return secondList;
+  }
+  if (secondList == NULL) {
+    return firstList;
+  }
+  LinkedListNode *a = firstList;
+  LinkedListNode *b = secondList;
+  LinkedListNode *c;
+  LinkedListNode *merged;
+  if (a->value <= b->value) {
+    merged = a;
+    a = a->next;
+  }
+  else {
+    merged = b;
+    b = b->next;
+  }
+  c = merged;
+  while (c != NULL) {
+    if (a == NULL) {
+      c->next = b;
+      break;
+    }
+    else if (b == NULL) {
+      c->next = a;
+      break;
+    }
+    else if (a->value <= b->value) {
+      c->next = a;
+      a = a->next;
+      c = c->next;
+    }
+    else {
+      c->next = b;
+      b = b->next;
+      c = c->next;
+    }
+  }
+    return merged;
 }
 
 // Creates a linked list from the integers in the given array.
 LinkedListNode *createLinkedList(int *numbers, int length) {
     if (length == 0)
-        return NULL;
+	return NULL;
     LinkedListNode *head, *tail;
     head = tail = new LinkedListNode(numbers[0]);
     for (int i = 1; i < length; i++) {
-        LinkedListNode *node = new LinkedListNode(numbers[i]);
-        tail->next = node;
-        tail = node;
+	LinkedListNode *node = new LinkedListNode(numbers[i]);
+	tail->next = node;
+	tail = node;
     }
     return head;
 }
@@ -50,10 +106,10 @@ LinkedListNode *createLinkedList(int *numbers, int length) {
 string linkedListToString(LinkedListNode *head, string edge) {
     stringstream output;
     while (head) {
-        output << head->value;
-        if (head->next)
-            output << edge;
-        head = head->next;
+	output << head->value;
+	if (head->next)
+	    output << edge;
+	head = head->next;
     }
     return output.str();
 }
