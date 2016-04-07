@@ -1,22 +1,22 @@
 #include <string>
 #include "btree.h"
 
+#include <iostream>
+#include <ostream>
+
 // The default BTreeNode constructor
 BTreeNode::BTreeNode() {
     // TODO
-  bool isLeaf = true;
-  int numkeys = 0;
-  char keys[MAXSIZE];
-  BTreeNode *children[MAXSIZE + 1];
+  this->isLeaf = true;
+  this->numKeys = 0;
+  // cout << "BTreeNode()" << endl;
 }
 
 // The overloaded BTreeNode constructor
 BTreeNode::BTreeNode(bool isLeaf, int numKeys) {
     // TODO
-  isLeaf = isLeaf;
-  numKeys = numKeys;
-  char keys[MAXSIZE];
-  BTreeNode *children[MAXSIZE + 1];
+  this->isLeaf = isLeaf;
+  this->numKeys = numKeys;
 }
 
 /*
@@ -60,30 +60,39 @@ void bTreeSearch(BTreeNode *root, char key, BTreeNode *&returnNode, int &returnI
 }
 
 /*
+
  The BTree insert function
  Hint: Note that root is passed-by-reference in order to accommodate the situations
        in which the BTree height is increased.
 */
 void bTreeInsert(BTreeNode *&root, char key) {
     // TODO
+  // cout << "Insert" << endl;
   BTreeNode *newRoot = root;
   if (newRoot->numKeys == (2 * T - 1)) {
-      BTreeNode *s = new BTreeNode();
-      root = s;
-      s->isLeaf = false;
-      s->numKeys = 0;
-      s->children[1] = newRoot;
-      bTreeSplitChild(s, 1);
-      bTreeInsertNonfull(s, key);
-    }
-  else {
-    bTreeInsertNonfull(newRoot, key);
+    // cout << "Insert if" << endl;
+    BTreeNode *s = new BTreeNode();
+    root = s;
+    s->isLeaf = false;
+    s->numKeys = 0;
+    s->children[1] = newRoot;
+    bTreeSplitChild(s, 1);
+    // cout << "Split" << endl;
+    bTreeInsertNonfull(s, key);
+    // cout << "post InsertNonFull 1" << endl;
   }
+  else {
+    // cout << "Insert else" << endl;
+    bTreeInsertNonfull(newRoot, key);
+    // cout << "post InsertNonFull 1" << endl;
+  }
+  // cout << "Insert complete" << endl;
 }
 
 // The BTree insert non-full function
 void bTreeInsertNonfull(BTreeNode *root, char key) {
     // TODO
+  // cout << "InsertNonFull" << endl;
   int i = root->numKeys;
   if (root->isLeaf) {
     while (i >= 1 && key <= root->keys[i]) {
@@ -111,25 +120,27 @@ void bTreeInsertNonfull(BTreeNode *root, char key) {
 // The BTree split child function
 void bTreeSplitChild(BTreeNode *root, int index) {
     // TODO
+  // cout << "Split" << endl;
   BTreeNode *z = new BTreeNode;
   BTreeNode *y = root->children[index];
+  // cout << "Survived children[index]" << endl;
   z->isLeaf = y->isLeaf;
   z->numKeys = T - 1;
   int j = 0;
-  for (j = 1; T - 1; j = j++) {
+  for (j = 1; (j <= (T - 1)); j++) {
     z->keys[j] = y->keys[j+T];
   }
   if (!y->isLeaf) {
-    for (j = 1; T; j++) {
+    for (j = 1; (j <= T); j++) {
       z->children[j] = y->children[j+T];
     }
   }
   y->numKeys = T - 1;
-  for (j = root->numKeys + 1; index + 1; j--) {
+  for (j = root->numKeys + 1; (j >= (index + 1)); j--) {
     root->children[j+1] = root->children[j];
   }
   root->children[index+1] = z;
-  for (j = root->numKeys; index; j--) {
+  for (j = root->numKeys; (j >= index); j--) {
     root->keys[j+1] = root->keys[j];
   }
   root->keys[index] = y->keys[T];
@@ -151,22 +162,32 @@ void bTreeDelete(BTreeNode *&root, char key) {
     // TODO
 }
 
+
 // Converts a BTree to a human-readable string.
 string bTreeToString(BTreeNode *node, string edgeString, int level) {
-    string output = "";
-    string edge = "";
-    for (int i = 0; i < level; i++)
-	edge += edgeString;
-    if (node->isLeaf) {
-	for (int i = node->numKeys - 1; i >= 0; i--) {
-	    output += edge + node->keys[i] + "\n";
-	}
-    } else {
-	output += bTreeToString(node->children[node->numKeys], edgeString, level + 1);
-	for (int i = node->numKeys - 1; i >= 0; i--) {
-	    output += edge + node->keys[i] + "\n";
-	    output += bTreeToString(node->children[i], edgeString, level + 1);
-	}
+  string output = "";
+  string edge = "";
+  for (int i = 0; i < level; i++) {
+    cout << "Edge +1" << endl;
+    edge += edgeString;
+    cout << "Completed Edge +1" << endl;
+    cout << node->numKeys << endl;
+  }
+  if (node->isLeaf) {
+    cout << "If it's a leaf" << endl;
+    for (int i = node->numKeys - 1; i >= 0; i--) {
+      cout << "loop through the node" << endl;
+      output += edge + node->keys[i] + "\n";
     }
-    return output;
+  }
+  else {
+    cout << "Else" << endl;
+    output += bTreeToString(node->children[node->numKeys], edgeString, level + 1);
+    for (int i = node->numKeys - 1; i >= 0; i--) {
+      cout << "loop loop through node again" << endl;
+      output += edge + node->keys[i] + "\n";
+      output += bTreeToString(node->children[i], edgeString, level + 1);
+    }
+  }
+  return output;
 }
