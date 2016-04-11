@@ -3,7 +3,7 @@
 #define T 3
 #define MAXSIZE (2 * T) - 1
 #define MINSIZE T - 1
-
+#include <string>
 using namespace std;
 
 // The BTree node struct
