@@ -1,3 +1,4 @@
+// David Sugarman 5364
 #include "btree.h"
 #include <string>
 
@@ -40,10 +41,10 @@ BTreeNode::~BTreeNode() {
 void bTreeSearch(BTreeNode *root, char key, BTreeNode *&returnNode, int &returnIndex) {
   // TODO
   int i = 0;
-  while (i < root->numKeys && key > root->keys[i]) {
+  while (i <= root->numKeys - 1 && key > root->keys[i]) {
     i++;
   }
-  if (i < root->numKeys && key == root->keys[i]) {
+  if (i <= root->numKeys - 1 && key == root->keys[i]) {
     returnNode = root;
     returnIndex = i;
     return;
@@ -54,7 +55,7 @@ void bTreeSearch(BTreeNode *root, char key, BTreeNode *&returnNode, int &returnI
     return;
   }
   else {
-    bTreeSearch(root, key, returnNode, returnIndex);
+    bTreeSearch(root->children[i], key, returnNode, returnIndex);
   }
 }
 
@@ -83,7 +84,8 @@ void bTreeInsert(BTreeNode *&root, char key) {
 
 // The BTree insert non-full function
 void bTreeInsertNonfull(BTreeNode *root, char key) {
-  int i = root->numKeys - 1;
+  int i = root->numKeys;
+  i--;
   if (root->isLeaf) {
     while (i >= 0 && (key <= root->keys[i])) {
       root->keys[i+1] = root->keys[i];
@@ -125,14 +127,15 @@ void bTreeSplitChild(BTreeNode *root, int index) {
     }
   }
   child1->numKeys = T - 1;
-  for (j = root->numKeys; j > index; j--) {
+  for (j = root->numKeys; j >= index; j--) {
     root->children[j+1] = root->children[j];
   }
   root->children[index+1] = child2;
-  for (j = root->numKeys; j > index; j--) { // awdaw
+  j = root->numKeys;
+  for (j; j >= index; j--) { // awdaw
     root->keys[j+1] = root->keys[j];
   }
-  root->keys[index] = child1->keys[T - 1];
+  root->keys[index] = child1->keys[T-1];
   root->numKeys++;
 }
 
