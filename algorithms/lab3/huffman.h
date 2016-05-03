@@ -21,11 +21,11 @@ struct HuffmanNode {
 
     // Overloaded comparison operators
     inline bool operator<(HuffmanNode &rhsNode) {
-        return frequency < rhsNode.frequency;
+	return frequency < rhsNode.frequency;
     }
 
     inline bool operator>(HuffmanNode &rhsNode) {
-        return rhsNode < *this;
+	return rhsNode < *this;
     }
 };
 
