@@ -12,56 +12,56 @@ void parseFrequencies(string filePath, char *&characters, int *&frequencies, int
     int rawFrequencies[MAXELEM];
     // Init array to 0s
     for (int i = 0; i < MAXELEM; i++)
-        rawFrequencies[i] = 0;
+	rawFrequencies[i] = 0;
     // Read chars from file
     fstream infile;
     infile.open(filePath.c_str(), ios::in);
     while (!infile.eof())
-        rawFrequencies[infile.get()]++;
+	rawFrequencies[infile.get()]++;
     // Find total chars
     length = 0;
     for (int i = 0; i < MAXELEM; i++)
-        if (rawFrequencies[i] != 0)
-            length++;
+	if (rawFrequencies[i] != 0)
+	    length++;
     // Init characters and frequencies arrays
     characters = new char[length];
     frequencies = new int[length];
     int j = 0;
     for (int i = 0; i < MAXELEM; i++)
-        if (rawFrequencies[i] != 0) {
-            characters[j] = i;
-            frequencies[j++] = rawFrequencies[i];
-        }
+	if (rawFrequencies[i] != 0) {
+	    characters[j] = i;
+	    frequencies[j++] = rawFrequencies[i];
+	}
 }
 
 // Renders the frequency data to the given stringstream
 void renderFrequencies(stringstream &output, char *characters, int *frequencies, int length) {
     for (int i = 0; i < length; i++)
-        output << characters[i] << ": " << frequencies[i] << endl;
+	output << characters[i] << ": " << frequencies[i] << endl;
 }
 
 // Renders the Huffman tree to the given stringstream
 void renderHuffmanTree(stringstream &output, HuffmanNode *node, string edgeString, int sepCount) {
     if (node->isLeaf) {
-        for (int i = 0; i < sepCount; i++)
-            output << edgeString;
-        output << node->frequency << ":" << node->character << endl;
+	for (int i = 0; i < sepCount; i++)
+	    output << edgeString;
+	output << node->frequency << ":" << node->character << endl;
     } else {
-        renderHuffmanTree(output, node->right, edgeString, sepCount + 1);
-        for (int i = 0; i < sepCount; i++)
-            output << edgeString;
-        output << node->frequency << endl;
-        renderHuffmanTree(output, node->left, edgeString, sepCount + 1);
+	renderHuffmanTree(output, node->right, edgeString, sepCount + 1);
+	for (int i = 0; i < sepCount; i++)
+	    output << edgeString;
+	output << node->frequency << endl;
+	renderHuffmanTree(output, node->left, edgeString, sepCount + 1);
     }
 }
 
 // Recursively computes the Huffman codes by traversing the huffman tree
 void computeHuffmanCodesHelper(HuffmanNode *node, string *codes, string code) {
     if (node->isLeaf)
-        codes[(int) node->character] = code;
+	codes[(int) node->character] = code;
     else {
-        computeHuffmanCodesHelper(node->left, codes, code + "0");
-        computeHuffmanCodesHelper(node->right, codes, code + "1");
+	computeHuffmanCodesHelper(node->left, codes, code + "0");
+	computeHuffmanCodesHelper(node->right, codes, code + "1");
     }
 }
 
@@ -69,17 +69,17 @@ void computeHuffmanCodesHelper(HuffmanNode *node, string *codes, string code) {
 void computeHuffmanCodes(string *&codes, HuffmanNode *huffmanTree, char *characters, int length) {
     string rawCodes[MAXELEM];
     for (int i = 0; i < MAXELEM; i++)
-        rawCodes[i] = "";
+	rawCodes[i] = "";
     computeHuffmanCodesHelper(huffmanTree, rawCodes, "");
     codes = new string[length];
     for (int i = 0; i < length; i++)
-        codes[i] = rawCodes[(int) characters[i]];
+	codes[i] = rawCodes[(int) characters[i]];
 }
 
 // Renders the Huffman code data to the given stringstream
 void renderHuffmanCodes(stringstream &output, char *characters, string *codes, int length) {
     for (int i = 0; i < length; i++)
-        output << characters[i] << ": " << codes[i] << endl;
+	output << characters[i] << ": " << codes[i] << endl;
 }
 
 // Processes the test file and returns the result
@@ -103,6 +103,6 @@ string processTestFile(string filePath, string edgeString) {
 }
 
 int main(int argc, char *argv[]) {
-    cout << processTestFile(argv[1], "--");
-    return 0;
+  cout << processTestFile(argv[1], "--");
+  return 0;
 }

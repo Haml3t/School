@@ -1,6 +1,8 @@
 // David Sugarman 5364
 #include <cstddef>
 #include "huffman.h"
+#include <iostream>
+using namespace std;
 
 // ---------------------------------------------------------------------------------------------
 // Huffman code related
@@ -38,9 +40,9 @@ HuffmanNode::HuffmanNode(int frequency, HuffmanNode *left, HuffmanNode *right) {
        is found at frequencies[i].
 */
 HuffmanNode **genHuffmanNodes(char *characters, int *frequencies, int length) {
-  heapNodes = new HuffmanNode*[length];
+  HuffmanNode **heapNodes = new HuffmanNode*[length];
   for (int i = 0; i < length; i++) {
-    heapNodes[i] = HuffmanNode(characters[i], freqiencies[i]);
+    heapNodes[i] = new HuffmanNode(characters[i], frequencies[i]);
   }
     return heapNodes;
 }
@@ -54,13 +56,14 @@ HuffmanNode **genHuffmanNodes(char *characters, int *frequencies, int length) {
  returns: the pointer to the root of the huffman tree
 */
 HuffmanNode *genHuffmanTree(HuffmanNode **nodes, int length) {
-  for (i = 0; i < length -1; i++) {
-    new HuffmanNode z;
-    z->left = x = extractMin(nodes);
-    z->right = y = extractMin(nodes);
-    z->frequency = x->frequency + y->frequency;
+  MinHeap *queue = new MinHeap(nodes, length);
+  for (int i = 1; i < length - 1; i++) {
+    HuffmanNode *x = queue->extractMin();
+    HuffmanNode *y = queue->extractMin();
+    HuffmanNode *z = new HuffmanNode(x->frequency + y->frequency, x, y);
+    queue->insert(z);
   }
-  return extract-min(nodes);
+  return queue->extractMin();
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -84,25 +87,67 @@ int parent(int index) {
 MinHeap::MinHeap(HuffmanNode **nodes, int length) {
     heapSize = length;
     this->heapNodes = new HuffmanNode *[length];
-    for (int i = 0; i < length; i++)
-	this->heapNodes[i] = nodes[i];
+    for (int i = 0; i < length-1; i++)
+      this->heapNodes[i] = nodes[i];
     buildMinHeap();
 }
 
 // Exchanges the HuffmanNode pointers at the given indices of heapNodes array
 void MinHeap::exchange(int firstIndex, int secondIndex) {
-  new HuffmanNode dummy = heapNodes[firstIndex];
-  heapNodes[firstIndex]->right = right(secondIndex);
-  heapNodes[firstIndex]->left = left(secondIndex);
-  if heapNodes[firstIndex] == parent(firstIndex)->right {
-      parent(firstIndex)->right = secondIndex;
+  HuffmanNode *dummy = new HuffmanNode(heapNodes[firstIndex]->character, heapNodes[firstIndex]->frequency);
+  dummy->right = heapNodes[firstIndex]->right;
+  dummy->left = heapNodes[firstIndex]->left;
+  dummy->isLeaf = heapNodes[firstIndex]->isLeaf;
+  // 1) copy secondIndex stuff into firstIndex
+  heapNodes[firstIndex]->right = heapNodes[secondIndex]->right;
+  heapNodes[firstIndex]->left = heapNodes[secondIndex]->left;
+  heapNodes[firstIndex]->isLeaf = heapNodes[secondIndex]->isLeaf;
+  // 2) set appropriate pointer of parent(firstIndex) to secondIndex
+  if (heapNodes[firstIndex] == heapNodes[parent(firstIndex)]->right) {
+      heapNodes[parent(firstIndex)]->right = heapNodes[secondIndex];
     }
-    // TODO
+  else if (heapNodes[firstIndex] == heapNodes[parent(firstIndex)]->left) {
+    heapNodes[parent(firstIndex)]->left = heapNodes[secondIndex];
+    }
+  else {
+    cout << "Exchange error: invalid parent/child relationship" << endl;
+  }
+  // now firstIndex is done
+  // 3) copy dummy stuff into secondIndex
+  heapNodes[secondIndex]->right = dummy->right;
+  heapNodes[secondIndex]->left = dummy->left;
+  heapNodes[secondIndex]->isLeaf = dummy->isLeaf;
+  // 4) set appropriate pointer of parent()
+  if (heapNodes[secondIndex] == heapNodes[parent(secondIndex)]->right) {
+    heapNodes[parent(secondIndex)]->right = heapNodes[firstIndex];
+    }
+  else if (heapNodes[secondIndex] == heapNodes[parent(secondIndex)]->left) {
+    heapNodes[parent(secondIndex)]->left = heapNodes[firstIndex];
+    }
+  else {
+    cout << "Exchange error: invalid parent/child relationship" << endl;
+  }
+  // now firstIndex is done
 }
 
 // Applies the minHeapify algorithm starting from the given index
 void MinHeap::minHeapify(int index) {
-    // TODO
+  int l = left(index);
+  int r = right(index);
+  int smallest = 0;
+  if ((l <= this->heapSize) && (this->heapNodes[l] < this->heapNodes[index])) {
+    smallest = l;
+  }
+  else {
+    smallest = index;
+  }
+  if ((r <= this->heapSize) && (this->heapNodes[r] < this->heapNodes[smallest])) {
+    smallest = r;
+  }
+  if (smallest != index) {
+    exchange(index, smallest);
+    minHeapify(smallest);
+  }
 }
 
 // Converts the heapNodes array into a heap
@@ -113,8 +158,14 @@ void MinHeap::buildMinHeap() {
 
 // Removes the minimum element from the heap and returns it
 HuffmanNode *MinHeap::extractMin() {
-    // TODO
-    return NULL;
+  if (this->heapSize < 1) {
+    cout << "Error: heap underflow" << endl;
+  }
+  HuffmanNode *min = this->heapNodes[0];
+  this->heapNodes[0] = this->heapNodes[this->heapSize];
+  heapSize--;
+  minHeapify(0);
+    return min;
 }
 
 // Inserts a new HuffmanNode to the heap
