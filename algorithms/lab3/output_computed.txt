@@ -1,2 +1,12 @@
+Frequencies:
+a: 1
+b: 4
+Huffman Tree:
+--4:b
+5
+--1:a
+Huffman Codes:
+a: 0
+b: 1
 @
 @
