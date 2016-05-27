@@ -1,4 +1,3 @@
-
 /**
  *
  * @author Nooreddin Naghibolhosseini
@@ -10,14 +9,17 @@ public class Herbivore extends Agent
     private String name = "HERBIVORE";
 
     public String getName() {
-        return name;
+	return name;
     }
     public Herbivore(int x, int y)
     {
-        super(x, y, new Movable() {
-            public void move(){
+	super(x, y, new Movable() {
+	    public void move() {
 
-            }
-        });
+	    }
+		public void try_move(int x, int y) {
+
+		}
+	});
     }
 }

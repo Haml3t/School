@@ -4,4 +4,5 @@
 public interface Movable extends MoveState
 {
     void move();
+    void try_move(int x, int y);
 }
