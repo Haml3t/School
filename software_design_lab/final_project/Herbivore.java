@@ -3,6 +3,9 @@
  * @author Nooreddin Naghibolhosseini
  * @since JDK 1.8
  */
+
+//package finalproject;
+
 public class Herbivore extends Agent
 {
 
@@ -11,15 +14,10 @@ public class Herbivore extends Agent
     public String getName() {
 	return name;
     }
-    public Herbivore(int x, int y)
-    {
-	super(x, y, new Movable() {
-	    public void move() {
 
-	    }
-		public void try_move(int x, int y) {
 
-		}
-	});
+    public Herbivore(int x, int y, Environment env) {
+	super(x, y, env, new HerbivoreMove(env, x, y));
+
     }
 }
