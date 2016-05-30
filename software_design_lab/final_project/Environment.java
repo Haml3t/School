@@ -30,16 +30,27 @@ public class Environment
 	    for (int j = 0; j < 30; j++) {
 		if( Math.random() < 0.20 ) {
 		    earth[i][j] = new Plant(i, j, this);
+		    earth[i][j].setEnergy(0);
 		}
-		else if( Math.random() < 0.10 )
+		else if( Math.random() < 0.15 )
 		{
 		    earth[i][j] = new Herbivore(i, j, this);
+		    earth[i][j].setEnergy(6);
 		}
 		else if( Math.random() < 0.05 )
 		{
 		    earth[i][j] = new Carnivore(i, j, this);
+		    earth[i][j].setEnergy(6);
 		}
 	    }
+	}
+	printEarth();
+	System.out.println();
+
+	try {
+	    Thread.sleep(100);
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
 	}
     }
 
@@ -57,11 +68,11 @@ public class Environment
 	    for (int i = 0; i < 30; i++) {
 		for (int j = 0; j < 30; j++) {
 		    if (earth[i][j] != null) {
-			if (earth[i][j].getMoveState() instanceof Movable) {
-			    ((Movable) earth[i][j].getMoveState()).move();
+			if (earth[i][j] instanceof LocomotiveAgent) {
+			     ((LocomotiveAgent) earth[i][j]).move();
 			}
-			else if (earth[i][j].getMoveState() instanceof Immovable) {
-			    ((Immovable) earth[i][j].getMoveState()).act();
+			else if (earth[i][j] instanceof NonLocomotiveAgent) {
+			    ((NonLocomotiveAgent) earth[i][j]).act();
 			}
 		    }
 		}
@@ -71,7 +82,7 @@ public class Environment
 	    System.out.println();
 
 	    try {
-		Thread.sleep(100);
+		Thread.sleep(1000);
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	    } catch (InterruptedException e) {
@@ -81,14 +92,23 @@ public class Environment
     }
 
     private void printEarth() {
+	int carnCount = 0;
+	int herbCount = 0;
+	int plantCount = 0;
 	for (int i = 0; i < 30; i++) {
 	    for (int j = 0; j < 30; j++) {
-		if(earth[i][j] instanceof Carnivore)
+		if(earth[i][j] instanceof Carnivore) {
 		    System.out.print(CARNIVORE);
-		else if(earth[i][j] instanceof Herbivore)
+		    ++carnCount;
+		}
+		else if(earth[i][j] instanceof Herbivore) {
 		    System.out.print(HERBIVORE);
-		else if(earth[i][j] instanceof Plant)
+		    ++herbCount;
+		}
+		else if(earth[i][j] instanceof Plant) {
 		    System.out.print(PLANT);
+		    ++plantCount;
+		}
 		else
 		    System.out.print(' ');
 
@@ -96,14 +116,14 @@ public class Environment
 	    }
 	    System.out.println();
 	}
+	System.out.println("Carnivores: " + carnCount + " Herbivores: " + herbCount + " Plants: " + plantCount);
     }
 
     public Agent[][] getData() {
 	return earth;
     }
 
-
-    public int[] freeSpace(int x, int y) { // returns a free cell adjacent to the input cell as an array of ints representing the ordered pair
+    public int[] freeSpace(int x, int y) { // returns a free space adjacent to the agent
 
 	ArrayList<int[]> spaces = new ArrayList<>();
 
@@ -128,7 +148,7 @@ public class Environment
 	}
 
 	if (isEmpty(x-1, y-1)) {
-	    spaces.add(new int[]{ x-1, y-11});
+	    spaces.add(new int[]{ x-1, y-1});
 	}
 
 	if (isEmpty(x, y-1)) {
@@ -139,7 +159,7 @@ public class Environment
 	    spaces.add(new int[]{ x+1, y-1});
 	}
 	if (spaces.size() > 0) {
-	    int choice = randomWithRange(0,spaces.size());
+	    int choice = randomWithRange(0,spaces.size() - 1 );
 	    return spaces.get(choice);
 	}
 
@@ -147,66 +167,7 @@ public class Environment
     }
 
     public boolean isEmpty(int x, int y) {
-	if (x > 0 && y > 0 && earth[x][y] == null) {
-	    return true;
-	}
-	else
-	    return false;
-    }
-
-    // returns true if move succeeded
-    public boolean moveAgent(int xOld, int yOld, int xNew, int yNew) {
-	Agent agent = earth[xOld][yOld];
-	Movable agentMove = agent.moveInstance();
-
-	if (xNew >= 0 && xNew < 30 && yNew >= 0 && yNew < 30) { // valid coordinate?
-	    Agent target = earth[xNew][yNew];
-
-	    if (target == null) { // nothing in the target space, just go there
-		earth[xNew][yNew] = agent;
-		earth[xOld][yOld] = null;
-		agent.setX(xNew);
-		agent.setY(yNew);
-		return true;
-	    }
-	    else {
-
-		if(!target.isMovable()) { // target is plant
-		    if(agent instanceof Carnivore) {
-			return false; // carns dont eat plants
-		    }
-		    else if (agent instanceof Herbivore) {
-			agentMove.eat(target);
-			return true;
-		    }
-		}
-
-		else { // target is an animal
-		    if (target.getName() == agent.getName()) { // same species
-			// if same sex, do attack
-			if(((Movable)target.getMoveState()).isMale() == agentMove.isMale()) {
-			    return agentMove.attack(target);
-			}
-			else {
-			    agentMove.reproduce(target);
-			    return false; // reproduction is not moving
-			}
-		    }
-		    else { // different species of animal
-			if(agent instanceof Carnivore) {
-			    agentMove.eat(target);
-			    return true;
-			}
-			else if (agent instanceof Herbivore) {
-			    ; // run away
-			    return false; // for now chill
-			}
-		    }
-		}
-	    }
-	}
-
-	return false;
+	 return (x >= 0 && y >= 0 && x < 30 && y < 30 && earth[x][y] == null);
     }
 
     public static int randomWithRange(int min, int max) {

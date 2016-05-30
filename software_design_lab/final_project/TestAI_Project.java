@@ -8,7 +8,7 @@ public class TestAI_Project
 {
     public static void main(String[] args)
     {
-	Environment.getInstance().startEarth(1000);
+	Environment.getInstance().startEarth(200);
     }
 
 }

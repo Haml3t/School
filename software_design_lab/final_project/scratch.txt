@@ -1,0 +1,35 @@
+Agent > LocomotiveAgent
+---------> Canivore
+---------> Herbivore
+------> NonLocomotiveAgent
+
+
+Agent:
+x,y
+energy
+age
+die()
+environment
+
+LocomotiveAgent:
+sexualReproduce
+move
+-- calls try_move (proto)
+eat (proto)
+attack
+isMale
+
+Carnivore:
+eat herbivores
+
+Herivore:
+eat plants
+run from carnivores (todo)
+
+NonLocomotiveAgent:
+asexualReproduce
+act
+gainEnergy
+
+Plant:
+bupkis
